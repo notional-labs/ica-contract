@@ -1,8 +1,10 @@
-[package]
-name = "ica-contract"
-version = "0.1.0"
-edition = "2021"
+[workspace]
+members = ["packages/*", "contracts/*"]
 
-# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
-
-[dependencies]
+[profile.release]
+rpath = false
+lto = true
+overflow-checks = true
+opt-level = 3
+debug = false
+debug-assertions = false
