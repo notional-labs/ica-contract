@@ -34,7 +34,7 @@ CODE_ID=$(echo $RAW_LOG | jq -r .[0].events[1].attributes[0].value)
 
 echo $CODE_ID
 
-INIT_JSON=$(digd tx wasm instantiate 13 {} --from $ACCOUNT --label "instantiate contract" -y --chain-id $CHAIN_ID --gas 10000000 --fees 100000000stake -o json --no-admin)
+INIT_JSON=$(digd tx wasm instantiate $CODE_ID {} --from $ACCOUNT --label "instantiate contract" -y --chain-id $CHAIN_ID --gas 10000000 --fees 100000000stake -o json --no-admin)
 
 echo "INIT_JSON = $INIT_JSON"
 
@@ -57,3 +57,7 @@ CONTRACT_ADDRESS=$(echo $RAW_LOG | jq -r .[0].events[0].attributes[0].value)
 
 echo "CONTRACT ADDRESS = $CONTRACT_ADDRESS"
 
+SEN_MSG=$(digd tx wasm execute $CONTRACT_ADDRESS '{"send_msgs":{"channel_id":"connection-1","msgs":[{"custom":{"data":"any"}}]}}' --from $ACCOUNT -y --chain-id $CHAIN_ID --gas 10000000 --fees 100000000stake -o json)
+RAW_LOG=$(digd query tx "$(echo $INIT_JSON | jq -r .txhash)" --chain-id "$CHAINID" --node "$NODE" --output json | jq -r .raw_log)
+
+echo "RAW_LOG = $RAW_LOG"
