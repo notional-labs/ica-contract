@@ -4,7 +4,6 @@ use thiserror::Error;
 
 use cosmwasm_std::StdError;
 use cw_controllers::AdminError;
-use cw_utils::PaymentError;
 
 /// Never is a placeholder to ensure we don't return any errors
 #[derive(Error, Debug)]
@@ -16,11 +15,8 @@ pub enum ContractError {
     Std(#[from] StdError),
 
     #[error("{0}")]
-    Payment(#[from] PaymentError),
-
-    #[error("{0}")]
     Admin(#[from] AdminError),
-    
+
     #[error("Didn't send any funds")]
     NoFunds {},
 
