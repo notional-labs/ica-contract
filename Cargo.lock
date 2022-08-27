@@ -130,6 +130,16 @@ dependencies = [
 ]
 
 [[package]]
+name = "cosmwasm-schema"
+version = "1.0.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "772e80bbad231a47a2068812b723a1ff81dd4a0d56c9391ac748177bea3a61da"
+dependencies = [
+ "schemars",
+ "serde_json",
+]
+
+[[package]]
 name = "cosmwasm-std"
 version = "1.0.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -194,6 +204,57 @@ dependencies = [
  "rand_core 0.5.1",
  "subtle",
  "zeroize",
+]
+
+[[package]]
+name = "cw-controllers"
+version = "0.14.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "b81b8c4647f13be38baea7345885fcd97cffe8ad4e0454a43f975be9609127ed"
+dependencies = [
+ "cosmwasm-std",
+ "cw-storage-plus",
+ "cw-utils",
+ "schemars",
+ "serde",
+ "thiserror",
+]
+
+[[package]]
+name = "cw-storage-plus"
+version = "0.14.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "1c8b264257c4f44c49b7ce09377af63aa040768ecd3fd7bdd2d48a09323a1e90"
+dependencies = [
+ "cosmwasm-std",
+ "schemars",
+ "serde",
+]
+
+[[package]]
+name = "cw-utils"
+version = "0.14.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "414b91f3d7a619bb26c835119d7095804596a1382ddc1d184c33c1d2c17f6c5e"
+dependencies = [
+ "cosmwasm-std",
+ "cw2",
+ "schemars",
+ "semver",
+ "serde",
+ "thiserror",
+]
+
+[[package]]
+name = "cw2"
+version = "0.14.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "aa74c324af8e3506fd8d50759a265bead3f87402e413c840042af5d2808463d6"
+dependencies = [
+ "cosmwasm-std",
+ "cw-storage-plus",
+ "schemars",
+ "serde",
 ]
 
 [[package]]
@@ -490,7 +551,10 @@ dependencies = [
 name = "ica"
 version = "0.1.0"
 dependencies = [
+ "cosmwasm-schema",
  "cosmwasm-std",
+ "cw-controllers",
+ "cw-storage-plus",
  "prost 0.11.0",
  "schemars",
  "serde",
@@ -821,6 +885,12 @@ dependencies = [
  "subtle",
  "zeroize",
 ]
+
+[[package]]
+name = "semver"
+version = "1.0.13"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "93f6841e709003d68bb2deee8c343572bf446003ec20a583e76f7b15cebf3711"
 
 [[package]]
 name = "serde"
