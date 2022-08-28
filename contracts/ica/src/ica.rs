@@ -1,5 +1,5 @@
 /// MsgRegisterAccount defines the payload for Msg/RegisterAccount
-#[derive(Clone, PartialEq, ::prost::Message)]
+#[derive(Clone, Eq, PartialEq, PartialOrd, Ord, ::prost::Message)]
 pub struct MsgRegisterAccount {
     #[prost(string, tag = "1")]
     pub owner: ::prost::alloc::string::String,

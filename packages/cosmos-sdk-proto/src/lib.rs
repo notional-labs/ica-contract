@@ -19,5 +19,24 @@ pub mod ibc {
             }
         }
     }
+}
 
+/// Cosmos protobuf definitions.
+pub mod cosmos {
+    /// Authentication of accounts and transactions.
+
+
+    /// Balances.
+    pub mod bank {
+        pub mod v1beta1 {
+            include!("prost/cosmos.bank.v1beta1.rs");
+        }
+    }
+
+    /// Base functionality.
+    pub mod base {
+        pub mod v1beta1 {
+            include!("prost/cosmos.base.v1beta1.rs");
+        }
+    }
 }

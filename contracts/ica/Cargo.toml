@@ -12,6 +12,9 @@ serde = { version = "1.0.103", default-features = false, features = ["derive"] }
 thiserror = { version = "1.0.21" }
 cw-storage-plus = { version = "0.14.0" }
 cw-controllers = { version = "0.14.0" }
+prost = "0.11.0"
+prost-types = "0.11.1"
+tendermint-proto =  "0.23.5"
 
 [dev-dependencies]
 prost = "0.11.0"

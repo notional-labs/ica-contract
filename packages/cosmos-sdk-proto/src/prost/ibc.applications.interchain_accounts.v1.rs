@@ -1,70 +1,26 @@
-/// Metadata defines a set of protocol specific data encoded into the ICS27 channel version bytestring
-/// See ICS004: <https://github.com/cosmos/ibc/tree/master/spec/core/ics-004-channel-and-packet-semantics#Versioning>
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct Metadata {
-    /// version defines the ICS27 protocol version
+/// MsgRegisterAccount defines the payload for Msg/RegisterAccount
+#[derive(Clone, Eq, PartialEq, PartialOrd, Ord, ::prost::Message)]
+pub struct MsgRegisterAccount {
     #[prost(string, tag = "1")]
+    pub owner: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub connection_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "3")]
     pub version: ::prost::alloc::string::String,
-    /// controller_connection_id is the connection identifier associated with the controller chain
-    #[prost(string, tag = "2")]
-    pub controller_connection_id: ::prost::alloc::string::String,
-    /// host_connection_id is the connection identifier associated with the host chain
-    #[prost(string, tag = "3")]
-    pub host_connection_id: ::prost::alloc::string::String,
-    /// address defines the interchain account address to be fulfilled upon the OnChanOpenTry handshake step
-    /// NOTE: the address field is empty on the OnChanOpenInit handshake step
-    #[prost(string, tag = "4")]
-    pub address: ::prost::alloc::string::String,
-    /// encoding defines the supported codec format
-    #[prost(string, tag = "5")]
-    pub encoding: ::prost::alloc::string::String,
-    /// tx_type defines the type of transactions the interchain account can execute
-    #[prost(string, tag = "6")]
-    pub tx_type: ::prost::alloc::string::String,
 }
-/// ActiveChannel contains a connection ID, port ID and associated active channel ID
+/// MsgRegisterAccountResponse defines the response for Msg/RegisterAccount
 #[derive(Clone, PartialEq, ::prost::Message)]
-pub struct ActiveChannel {
+pub struct MsgRegisterAccountResponse {}
+/// MsgSubmitTx defines the payload for Msg/SubmitTx
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct MsgSubmitTx {
     #[prost(string, tag = "1")]
-    pub connection_id: ::prost::alloc::string::String,
+    pub owner: ::prost::alloc::string::String,
     #[prost(string, tag = "2")]
-    pub port_id: ::prost::alloc::string::String,
-    #[prost(string, tag = "3")]
-    pub channel_id: ::prost::alloc::string::String,
-}
-/// RegisteredInterchainAccount contains a connection ID, port ID and associated interchain account address
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct RegisteredInterchainAccount {
-    #[prost(string, tag = "1")]
     pub connection_id: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
-    pub port_id: ::prost::alloc::string::String,
-    #[prost(string, tag = "3")]
-    pub account_address: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "3")]
+    pub msg: ::core::option::Option<::prost_types::Any>,
 }
-/// InterchainAccountPacketData is comprised of a raw transaction, type of transaction and optional memo field.
+/// MsgSubmitTxResponse defines the response for Msg/SubmitTx
 #[derive(Clone, PartialEq, ::prost::Message)]
-pub struct InterchainAccountPacketData {
-    #[prost(enumeration = "Type", tag = "1")]
-    pub r#type: i32,
-    #[prost(bytes = "vec", tag = "2")]
-    pub data: ::prost::alloc::vec::Vec<u8>,
-    #[prost(string, tag = "3")]
-    pub memo: ::prost::alloc::string::String,
-}
-/// CosmosTx contains a list of sdk.Msg's. It should be used when sending transactions to an SDK host chain.
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct CosmosTx {
-    #[prost(message, repeated, tag = "1")]
-    pub messages: ::prost::alloc::vec::Vec<::prost_types::Any>,
-}
-/// Type defines a classification of message issued from a controller chain to its associated interchain accounts
-/// host
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum Type {
-    /// Default zero value enumeration
-    Unspecified = 0,
-    /// Execute a transaction on an interchain accounts host chain
-    ExecuteTx = 1,
-}
+pub struct MsgSubmitTxResponse {}
